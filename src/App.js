@@ -1,14 +1,20 @@
 import "./style/App.css";
+import { Suspense } from "react";
+import Rubiks from "./components/Rubiks";
 import { Canvas } from "@react-three/fiber";
-import Box from "./components/Box";
+import { Environment, OrbitControls } from "@react-three/drei";
 
 function App() {
   return (
-    <Canvas>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[-10, -10, -10]} />
-      <Box position={[0, 0, 0]} />
-    </Canvas>
+    <div className="App">
+      <Canvas>
+        <Suspense fallback={null}>
+          <Rubiks />
+          <OrbitControls />
+          <Environment preset="city" background />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }
 
